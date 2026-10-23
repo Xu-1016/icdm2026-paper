@@ -6,7 +6,7 @@
 
 **Public paper page:** https://xu-1016.github.io/icdm2026-paper/ (after GitHub Pages is enabled)
 
-**PDF:** [paper.pdf](paper.pdf) (upload the verified author manuscript before sharing)
+**PDF:** [Read the paper (PDF)](Paired%20Matched%20Terminal%20Supervision%20and%20Direction-%20Gain%20Allocation%20for%20Budgeted%20Sample-Column%20Interventions.pdf)
 
 ## Summary
 
