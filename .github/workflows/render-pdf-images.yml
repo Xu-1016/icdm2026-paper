@@ -1,0 +1,55 @@
+name: Render paper and poster for mobile
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - paper.pdf
+      - Poster.pdf
+      - .github/workflows/render-pdf-images.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Install PDF rendering utilities
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq poppler-utils
+      - name: Render PDFs as high-resolution JPEG images
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p site-images
+          pages="$(pdfinfo paper.pdf | awk '/^Pages:/ { print $2 }')"
+          if [ "$pages" -ne 5 ]; then
+            echo "Expected a five-page paper; found $pages" >&2
+            exit 1
+          fi
+          for i in $(seq 1 "$pages"); do
+            pdftoppm -f "$i" -l "$i" -scale-to 2200 -singlefile \
+              -jpeg -jpegopt quality=88,optimize=y \
+              paper.pdf "site-images/paper-$i"
+          done
+          pdftoppm -f 1 -l 1 -scale-to 5200 -singlefile \
+            -jpeg -jpegopt quality=90,optimize=y \
+            Poster.pdf "site-images/poster"
+          test -s site-images/poster.jpg
+          for i in 1 2 3 4 5; do test -s "site-images/paper-$i.jpg"; done
+      - name: Commit page images for GitHub Pages
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add site-images
+          if ! git diff --cached --quiet; then
+            git commit -m "Render PDF images for mobile reading [skip ci]"
+            git push
+          fi
