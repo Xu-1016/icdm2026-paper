@@ -1,21 +1,24 @@
 # Paired Matched Terminal Supervision and Direction-Gain Allocation for Budgeted Sample-Column Interventions
 
-**IEEE ICDM 2026 — accepted paper**
+Zhuoyang Xu¹, Pingrui Lai², Yizhuo Tian², Hua Yang²*
 
-**Authors:** Zhuoyang Xu, Pingrui Lai, Yizhuo Tian, Hua Yang
+¹ Shanghai Shixi High School, Shanghai, China  
+² Shanghai Jiao Tong University, Shanghai, China  
+* Corresponding author
 
-**Public paper page:** https://xu-1016.github.io/icdm2026-paper/ (after GitHub Pages is enabled)
+**IEEE International Conference on Data Mining (ICDM 2026), Shenyang, China**  
+Paper ID: S30334
 
-**PDF:** [Read the paper (PDF)](Paired%20Matched%20Terminal%20Supervision%20and%20Direction-%20Gain%20Allocation%20for%20Budgeted%20Sample-Column%20Interventions.pdf)
+**Paper webpage:** https://xu-1016.github.io/icdm2026-paper/
 
-## Summary
+**Files:** [Paper (PDF)](paper.pdf) | [Conference poster (PDF)](Poster.pdf)
 
-We investigate matched terminal supervision for budgeted sample-column schema-semantic interventions. PairedMagnitude estimates continuous signed gain, PairedSign estimates beneficial direction, and Sign-to-Magnitude uses direction for candidate selection and magnitude for allocation across samples.
+## Abstract
 
-## arXiv
+Tabular models can use schema information, such as column names and data types, to interpret cell values, yet a uniform schema-semantic strategy may not benefit all samples equally. Under a limited intervention budget, sample-column interventions require within-sample action selection and cross-row budget allocation, but reliable supervision for estimating incremental value is lacking. We introduce Paired matched terminal supervision, deriving intervention credit from matched terminal outcomes: PairedMagnitude preserves continuous gain, whereas PairedSign preserves beneficial direction. Sign-to-Magnitude uses PairedSign for within-row candidate selection and a PairedMagnitude estimator for cross-row allocation. In the main supervision comparison, PairedMagnitude achieves the highest mean Gain at all seven budgets, reaching 0.003256 at five percent. At five percent under dataset-equal aggregation, Sign-to-Magnitude achieves higher mean Gain and F1 change than Sign-only and, relative to Magnitude-only, lower Harm of 29.86 percent versus 42.98 percent and higher mean F1 change of 0.001606 versus 0.001000, despite lower mean Gain. These results support the value of matched intervention credit and stage-specific use of direction and magnitude information.
 
-The public arXiv link will be added when available. The private submission identifier is not a public paper link.
+**Keywords:** paired supervision, matched terminal supervision, budgeted intervention, sample-column ranking, Sign-to-Magnitude
 
-## Copyright and sharing
+## Availability and reuse
 
-© 2026 IEEE. Personal use is permitted; further uses may require IEEE permission. Please consult the [IEEE conference author posting policies](https://conferences.ieeeauthorcenter.ieee.org/author-ethics/guidelines-and-policies/post-publication-policies/) and use a version approved for public sharing. Do not upload IEEE's final published Version of Record unless the applicable license permits it.
+The arXiv link will be added once the submission is publicly available. This repository hosts an author-managed version of the conference paper and the poster. © 2026 IEEE. Personal use is permitted; other uses may require IEEE permission. See [IEEE conference author posting policies](https://conferences.ieeeauthorcenter.ieee.org/author-ethics/guidelines-and-policies/post-publication-policies/).
