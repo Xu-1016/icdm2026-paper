@@ -26,6 +26,12 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          # During a multi-commit PDF replacement, a source may be temporarily absent.
+          # Skip this intermediate commit; the subsequent upload will trigger a new run.
+          if [[ ! -f paper.pdf || ! -f Poster.pdf ]]; then
+            echo "::notice::Source paper.pdf or Poster.pdf is temporarily absent; skipping image generation for this commit."
+            exit 0
+          fi
           mkdir -p site-images
           pages="$(pdfinfo paper.pdf | awk '/^Pages:/ { print $2 }')"
           if [ "$pages" -ne 5 ]; then
