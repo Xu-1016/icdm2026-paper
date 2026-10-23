@@ -48,6 +48,9 @@ jobs:
             Poster.pdf "site-images/poster"
           test -s site-images/poster.jpg
           for i in 1 2 3 4 5; do test -s "site-images/paper-$i.jpg"; done
+          # Auditable source checksums tie rendered images to the source PDFs.
+          sha256sum paper.pdf Poster.pdf > site-images/source-hashes.txt
+          cat site-images/source-hashes.txt
       - name: Commit page images for GitHub Pages
         shell: bash
         run: |
