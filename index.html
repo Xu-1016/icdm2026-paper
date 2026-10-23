@@ -20,8 +20,15 @@
     .affiliations p {margin:2px 0}
     .metadata {font-size:14px;color:#344b5e;margin:20px 0 0}
     .links {display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin:22px auto 34px}
-    .links a {border:1px solid #9db5c6;border-radius:5px;color:var(--link);padding:7px 16px;text-decoration:none;font-size:15px;font-weight:600}
-    .links a:hover,.links a:focus-visible {background:#f2f6f9;text-decoration:underline}
+    .links a,.action-row a {display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 22px;border:1px solid #9db5c6;border-radius:7px;text-align:center;text-decoration:none;font-size:16px;font-weight:650;line-height:1.3;transition:background-color .15s,border-color .15s}
+    .links a,.action-row a {color:var(--link);background:#fff}
+    .links a.primary,.action-row a.primary {color:#fff;background:var(--link);border-color:var(--link)}
+    .links a:hover,.action-row a:hover {background:#edf5fb;border-color:var(--link)}
+    .links a.primary:hover,.action-row a.primary:hover {background:#0c3e65}
+    .links a:focus-visible,.action-row a:focus-visible {outline:3px solid #74a8cb;outline-offset:3px}
+    .action-row {display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin:14px 0 22px}
+    .document-frame {width:100%;height:min(88vh,1150px);min-height:650px;border:1px solid var(--rule);border-radius:5px;background:#f7f9fa;display:block}
+    #paper,#poster {scroll-margin-top:20px}
     a {color:var(--link)}
     section {padding-top:22px;border-top:1px solid var(--rule);margin-top:32px}
     h2 {font-size:22px;font-weight:700;line-height:1.3;margin:0 0 17px}
@@ -29,14 +36,14 @@
     .abstract p {margin:0}
     .keywords {font-size:14px;color:var(--muted);line-height:1.6;margin-top:17px}
     .poster-frame {width:100%;height:min(82vh,1020px);min-height:620px;border:1px solid var(--rule);background:#f7f9fa;display:block}
-    .poster-direct {font-size:14px;margin:11px 0 0}
     @media(max-width:640px) {
       main{padding:28px 18px 50px}
       .authors{font-size:16px}
       .abstract{text-align:left}
       .poster-frame{height:520px;min-height:0}
-      .links{gap:8px}
-      .links a{padding:7px 11px}
+      .links,.action-row{gap:10px}
+      .links a,.action-row a{font-size:15px;flex:1 1 145px;padding:12px 14px}
+      .document-frame{height:70vh;min-height:460px}
     }
   </style>
 </head>
@@ -51,10 +58,10 @@
       <p>* Corresponding author</p>
     </div>
     <p class="metadata">Paper ID: S30334<br>IEEE International Conference on Data Mining (ICDM 2026), Shenyang, China</p>
-    <nav class="links" aria-label="Paper files">
-      <a href="paper.pdf">Paper (PDF)</a>
-      <a href="Poster.pdf">Poster (PDF)</a>
-      <a href="#poster">View poster</a>
+    <nav class="links" aria-label="Paper and poster">
+      <a href="#paper" class="primary">Read Paper</a>
+      <a href="paper.pdf" download="paper.pdf">Download Paper</a>
+      <a href="#poster">View Poster</a>
     </nav>
   </header>
 
@@ -62,13 +69,24 @@
     <h2 id="abstract-heading">Abstract</h2>
     <div class="abstract"><p>Tabular models can use schema information, such as column names and data types, to interpret cell values, yet a uniform schema-semantic strategy may not benefit all samples equally. Under a limited intervention budget, sample-column interventions require within-sample action selection and cross-row budget allocation, but reliable supervision for estimating incremental value is lacking. We introduce Paired matched terminal supervision, deriving intervention credit from matched terminal outcomes: PairedMagnitude preserves continuous gain, whereas PairedSign preserves beneficial direction. Sign-to-Magnitude uses PairedSign for within-row candidate selection and a PairedMagnitude estimator for cross-row allocation. In the main supervision comparison, PairedMagnitude achieves the highest mean Gain at all seven budgets, reaching 0.003256 at five percent. At five percent under dataset-equal aggregation, Sign-to-Magnitude achieves higher mean Gain and F1 change than Sign-only and, relative to Magnitude-only, lower Harm of 29.86 percent versus 42.98 percent and higher mean F1 change of 0.001606 versus 0.001000, despite lower mean Gain. These results support the value of matched intervention credit and stage-specific use of direction and magnitude information.</p></div>
     <p class="keywords"><strong>Keywords:</strong> paired supervision, matched terminal supervision, budgeted intervention, sample-column ranking, Sign-to-Magnitude</p>
-    <p class="poster-direct"><a href="paper.pdf" target="_blank" rel="noopener noreferrer">Open the complete paper (PDF)</a></p>
+  </section>
+
+  <section id="paper" aria-labelledby="paper-heading">
+    <h2 id="paper-heading">Full Paper</h2>
+    <div class="action-row">
+      <a class="primary" href="paper.pdf" target="_blank" rel="noopener noreferrer">Open Paper (PDF)</a>
+      <a href="paper.pdf" download="paper.pdf">Download Paper (PDF)</a>
+    </div>
+    <iframe class="document-frame" src="paper.pdf#toolbar=1&amp;view=FitH" title="Full ICDM 2026 paper PDF" loading="lazy"></iframe>
   </section>
 
   <section id="poster" aria-labelledby="poster-heading">
     <h2 id="poster-heading">Conference Poster</h2>
+    <div class="action-row">
+      <a class="primary" href="Poster.pdf" target="_blank" rel="noopener noreferrer">Open Poster (PDF)</a>
+      <a href="Poster.pdf" download="Poster.pdf">Download Poster (PDF)</a>
+    </div>
     <iframe class="poster-frame" src="Poster.pdf#view=FitH" title="ICDM 2026 conference poster PDF" loading="lazy"></iframe>
-    <p class="poster-direct"><a href="Poster.pdf" target="_blank" rel="noopener noreferrer">Open the complete poster (PDF)</a></p>
   </section>
 
 </main>
