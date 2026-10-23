@@ -27,7 +27,12 @@
     .links a.primary:hover,.action-row a.primary:hover {background:#0c3e65}
     .links a:focus-visible,.action-row a:focus-visible {outline:3px solid #74a8cb;outline-offset:3px}
     .action-row {display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin:14px 0 22px}
-    .document-frame {width:100%;height:min(88vh,1150px);min-height:650px;border:1px solid var(--rule);border-radius:5px;background:#f7f9fa;display:block}
+    .paper-pages {display:grid;gap:30px}
+    .page-preview,.poster-preview {margin:0}
+    .page-preview a,.poster-preview a {display:block;cursor:zoom-in}
+    .page-preview img,.poster-preview img {display:block;width:100%;height:auto;background:#fff;border:1px solid var(--rule);border-radius:5px}
+    .page-preview figcaption {font-size:14px;color:var(--muted);text-align:center;padding-top:7px}
+    .poster-preview {max-width:1000px;margin:0 auto}
     #paper,#poster {scroll-margin-top:20px}
     a {color:var(--link)}
     section {padding-top:22px;border-top:1px solid var(--rule);margin-top:32px}
@@ -35,15 +40,15 @@
     .abstract {font-size:16px;line-height:1.8;text-align:justify}
     .abstract p {margin:0}
     .keywords {font-size:14px;color:var(--muted);line-height:1.6;margin-top:17px}
-    .poster-frame {width:100%;height:min(82vh,1020px);min-height:620px;border:1px solid var(--rule);background:#f7f9fa;display:block}
+    .page-preview img {max-height:none}
+    .poster-preview img {max-height:none}
     @media(max-width:640px) {
       main{padding:28px 18px 50px}
       .authors{font-size:16px}
       .abstract{text-align:left}
-      .poster-frame{height:520px;min-height:0}
       .links,.action-row{gap:10px}
       .links a,.action-row a{font-size:15px;flex:1 1 145px;padding:12px 14px}
-      .document-frame{height:70vh;min-height:460px}
+      .paper-pages{gap:18px}
     }
   </style>
 </head>
@@ -59,9 +64,9 @@
     </div>
     <p class="metadata">Paper ID: S30334<br>IEEE International Conference on Data Mining (ICDM 2026), Shenyang, China</p>
     <nav class="links" aria-label="Paper and poster">
-      <a href="#paper" class="primary">Read Paper</a>
+      <a href="#poster" class="primary">View Poster</a>
+      <a href="#paper">Read Paper</a>
       <a href="paper.pdf" download="paper.pdf">Download Paper</a>
-      <a href="#poster">View Poster</a>
     </nav>
   </header>
 
@@ -74,10 +79,14 @@
   <section id="poster" aria-labelledby="poster-heading">
     <h2 id="poster-heading">Conference Poster</h2>
     <div class="action-row">
-      <a class="primary" href="Poster.pdf" target="_blank" rel="noopener noreferrer">Open Poster (PDF)</a>
+      <a class="primary" href="site-images/poster.jpg" target="_blank" rel="noopener noreferrer">Open Full-Size Poster</a>
       <a href="Poster.pdf" download="Poster.pdf">Download Poster (PDF)</a>
     </div>
-    <iframe class="poster-frame" src="Poster.pdf#view=FitH" title="ICDM 2026 conference poster PDF" loading="lazy"></iframe>
+    <figure class="poster-preview">
+      <a href="site-images/poster.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open full-size conference poster image">
+        <img src="site-images/poster.jpg" alt="IEEE ICDM 2026 poster: paired matched terminal supervision, direction-gain allocation, experiments and conclusions" loading="lazy" decoding="async">
+      </a>
+    </figure>
   </section>
 
   <section id="paper" aria-labelledby="paper-heading">
@@ -86,7 +95,38 @@
       <a class="primary" href="paper.pdf" target="_blank" rel="noopener noreferrer">Open Paper (PDF)</a>
       <a href="paper.pdf" download="paper.pdf">Download Paper (PDF)</a>
     </div>
-    <iframe class="document-frame" src="paper.pdf#toolbar=1&amp;view=FitH" title="Full ICDM 2026 paper PDF" loading="lazy"></iframe>
+    <div class="paper-pages">
+      <figure class="page-preview">
+        <a href="site-images/paper-1.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open paper page 1 at full resolution">
+          <img src="site-images/paper-1.jpg" alt="Full research paper, page 1 of 5" loading="lazy" decoding="async">
+        </a>
+        <figcaption>Page 1 of 5</figcaption>
+      </figure>
+      <figure class="page-preview">
+        <a href="site-images/paper-2.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open paper page 2 at full resolution">
+          <img src="site-images/paper-2.jpg" alt="Full research paper, page 2 of 5" loading="lazy" decoding="async">
+        </a>
+        <figcaption>Page 2 of 5</figcaption>
+      </figure>
+      <figure class="page-preview">
+        <a href="site-images/paper-3.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open paper page 3 at full resolution">
+          <img src="site-images/paper-3.jpg" alt="Full research paper, page 3 of 5" loading="lazy" decoding="async">
+        </a>
+        <figcaption>Page 3 of 5</figcaption>
+      </figure>
+      <figure class="page-preview">
+        <a href="site-images/paper-4.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open paper page 4 at full resolution">
+          <img src="site-images/paper-4.jpg" alt="Full research paper, page 4 of 5" loading="lazy" decoding="async">
+        </a>
+        <figcaption>Page 4 of 5</figcaption>
+      </figure>
+      <figure class="page-preview">
+        <a href="site-images/paper-5.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open paper page 5 at full resolution">
+          <img src="site-images/paper-5.jpg" alt="Full research paper, page 5 of 5" loading="lazy" decoding="async">
+        </a>
+        <figcaption>Page 5 of 5</figcaption>
+      </figure>
+    </div>
   </section>
 
 </main>
