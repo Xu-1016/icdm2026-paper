@@ -51,13 +51,26 @@ jobs:
           # Auditable source checksums tie rendered images to the source PDFs.
           sha256sum paper.pdf Poster.pdf > site-images/source-hashes.txt
           cat site-images/source-hashes.txt
+          # Keep HTML poster preview and download URLs in sync after each poster update.
+          # Versioning both URLs prevents browser caches from showing a previous PDF/image.
+          python3 - <<'PY'
+          import hashlib
+          from pathlib import Path
+          import re
+          version = hashlib.sha256(Path('Poster.pdf').read_bytes()).hexdigest()[:12]
+          page = Path('index.html')
+          html = page.read_text(encoding='utf-8')
+          html = re.sub(r'site-images/poster\\.jpg(?:\\?v=[A-Za-z0-9_-]+)?', f'site-images/poster.jpg?v={version}', html)
+          html = re.sub(r'(?<=href=")Poster\\.pdf(?:\\?v=[^"]+)?', f'Poster.pdf?v={version}', html)
+          page.write_text(html, encoding='utf-8')
+          PY
       - name: Commit page images for GitHub Pages
         shell: bash
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add site-images
+          git add site-images index.html
           if ! git diff --cached --quiet; then
             git commit -m "Render PDF images for mobile reading [skip ci]"
             git push
