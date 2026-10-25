@@ -60,8 +60,8 @@ jobs:
           version = hashlib.sha256(Path('Poster.pdf').read_bytes()).hexdigest()[:12]
           page = Path('index.html')
           html = page.read_text(encoding='utf-8')
-          html = re.sub(r'site-images/poster\\.jpg(?:\\?v=[A-Za-z0-9_-]+)?', f'site-images/poster.jpg?v={version}', html)
-          html = re.sub(r'(?<=href=")Poster\\.pdf(?:\\?v=[^"]+)?', f'Poster.pdf?v={version}', html)
+          html = re.sub(r'site-images/poster\.jpg(?:\?v=[A-Za-z0-9_-]+)?', f'site-images/poster.jpg?v={version}', html)
+          html = re.sub(r'(?<=href=")Poster\.pdf(?:\?v=[^"]+)?', f'Poster.pdf?v={version}', html)
           page.write_text(html, encoding='utf-8')
           PY
       - name: Commit page images for GitHub Pages
